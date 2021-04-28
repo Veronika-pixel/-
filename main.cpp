@@ -49,7 +49,7 @@ int main(int argc, char **argv)
         close(mySocket);
         errHandler("Error send message", 14);
     }
-
+cout << "Мы отправляем: " << buf << endl;
     rc = recv(mySocket, buf, 256, 0);
     if (rc == -1) {
         close(mySocket);
