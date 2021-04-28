@@ -20,14 +20,14 @@ int main(int argc, char **argv)
 
     sockaddr_in * remoteAddr = new (sockaddr_in);
     remoteAddr -> sin_family = AF_INET;
-    remoteAddr -> sin_port = htons(13);
+    remoteAddr -> sin_port = htons(7);
     remoteAddr -> sin_addr.s_addr = inet_addr("82.179.90.12");
 
     char *buf = new char[256];
-    strcpy(buf, "daytime\n");
+    strcpy(buf, "echo\n");
     int msgLen = strlen(buf);
 
-    int mySocket = socket(AF_INET, SOCK_STREAM, 0);
+    int mySocket = socket(AF_INET, SOCK_DGRAM, 0);
     if (mySocket == -1) {
         errHandler("Error open socket", 11);
     }
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
         errHandler("Error recevie answer", 15);
     }
     buf[rc] = '\0';
-    cout<< "Дата и время: " << buf << endl;
+    cout<< "Мы получаем: " << buf << endl;
 
     close(mySocket);
 
